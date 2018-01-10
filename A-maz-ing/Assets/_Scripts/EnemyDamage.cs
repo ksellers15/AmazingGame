@@ -6,7 +6,7 @@ public class EnemyDamage : MonoBehaviour
 {
     public int hit;
     public GameObject player;
-    public PlayerMovement pm;
+    public PlayerHealth playerHealth;
     public GameObject head;
     public EnemyHealth eH;
     public float timeBetweenAttacks = 0.5f;
@@ -17,7 +17,7 @@ public class EnemyDamage : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        pm = player.GetComponent<PlayerMovement>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         eH = head.GetComponent<EnemyHealth>();
     }
 
@@ -53,9 +53,9 @@ public class EnemyDamage : MonoBehaviour
     {
         timer = 0f;
 
-        if (pm.health > 0)
+        if (playerHealth.health > 0)
         {
-            pm.health -= hit;
+            playerHealth.health -= hit;
         }
     }
 }

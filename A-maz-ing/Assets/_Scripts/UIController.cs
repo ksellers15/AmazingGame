@@ -8,14 +8,14 @@ public class UIController : MonoBehaviour
 
     public GameObject GC;
     public GameController gameController;
-    public GameObject pm;
-    public PlayerMovement playerMovement;
+    public GameObject player;
+    public PlayerHealth playerHealth;
     public Canvas winCanvas;
     public Text winText;
     public Text restartText, restartText1;
     public Text timeText;
     public Text timeLeft;
-    public Text playerHealth;
+    public Text playerHealthText;
     public Text loseText;
     public GameObject loadingImage;
     public bool isWin;
@@ -27,8 +27,8 @@ public class UIController : MonoBehaviour
 
         GC = GameObject.FindGameObjectWithTag("GameController");
         gameController = GC.GetComponent<GameController>();
-        pm = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = pm.GetComponent<PlayerMovement>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
         winText.text = "";
         loseText.text = "";
         restartText1.text = "";
@@ -40,7 +40,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         timeLeft.text = gameController.seconds.ToString();
-        playerHealth.text = "Health: " + playerMovement.health.ToString();
+        playerHealthText.text = "Health: " + playerHealth.health.ToString();
 
 
     }

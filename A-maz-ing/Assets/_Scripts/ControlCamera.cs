@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class ControlCamera : MonoBehaviour
 {
+    public GameObject player;
+    public PlayerMovement playerMovement;
     public Camera camera1;
     public Camera camera2;
-    public GameObject player;
-    public PlayerMovement pm;
+    public Camera specCam;
+
 
     // Use this for initialization
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        pm = player.GetComponent<PlayerMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         camera2.enabled = false;
         camera1.enabled = true;
     }
@@ -21,7 +23,12 @@ public class ControlCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pm.inverted)
+        if(specCam.enabled == true)
+        {
+            camera2.enabled = false;
+            camera1.enabled = false;
+        }
+        if (playerMovement.inverted)
         {
             camera2.enabled = true;
             camera1.enabled = false;

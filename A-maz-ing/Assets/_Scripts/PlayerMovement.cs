@@ -12,13 +12,11 @@ public class PlayerMovement : MonoBehaviour
     public GameController gameController;
 
     public bool isGrounded;
-    public bool dead;
     public bool inverted = false;
 
 
     public Rigidbody rb;
     public int speed;
-    public int health;
 
     private float x = 1;
    
@@ -31,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         gc = GameObject.FindGameObjectWithTag("GameController");
         gameController = gc.GetComponent<GameController>();
-        health = 100;
     }
 
     public void FixedUpdate()
@@ -83,10 +80,7 @@ public class PlayerMovement : MonoBehaviour
     }
     // Update is called once per frame
     void Update () {
-        if(health<=0)
-        {
-            dead = true;
-        }
+
 		
 	}
 

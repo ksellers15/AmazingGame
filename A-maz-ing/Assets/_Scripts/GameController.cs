@@ -11,8 +11,8 @@ public class GameController : MonoBehaviour {
     public Canvas paused;
     public AudioSource bgMusic;
     public AudioSource lose;
-    public GameObject pm;
-    public PlayerMovement playerMovement;
+    public GameObject player;
+    public PlayerHealth playerHealth;
 
     public bool isPaused;
     public float seconds;
@@ -22,8 +22,8 @@ public class GameController : MonoBehaviour {
 	void Awake () {
         UI = GameObject.FindGameObjectWithTag("UI");
         uiController = UI.GetComponent<UIController>();
-        pm = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = pm.GetComponent<PlayerMovement>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
 
         StartCoroutine("StartTimer");
 
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour {
             TogglePauseMenu();
         }
 
-        if(seconds == 0 && !uiController.isWin || playerMovement.dead)
+        if(seconds == 0 && !uiController.isWin || playerHealth.dead)
         {
             Lose();
         }
@@ -85,8 +85,7 @@ public class GameController : MonoBehaviour {
     {
         uiController.LoseScreen();
         bgMusic.Pause();
-        //lose.Play();
-       
+        //lose.Play(); 
     }
 
     public void OnClickStart(int level)
