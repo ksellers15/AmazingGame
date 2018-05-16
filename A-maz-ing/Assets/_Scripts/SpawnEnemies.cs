@@ -8,6 +8,8 @@ public class SpawnEnemies : MonoBehaviour
 {
     public MiniGameUIController miniGameUI;
     public GameObject zombie, hide;
+    public GameObject[] zombieList;
+    public GameObject[] pickUpObjects;
     public Vector3 spawnValues;
     public int zombieCount;
     public float startWait;
@@ -93,6 +95,7 @@ public class SpawnEnemies : MonoBehaviour
             miniGameUI.UpdateWave();
             for (int i = 0; i < zombieCount; i++)
             {
+                zombie = zombieList[Random.Range(0, zombieList.Length)];
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(zombie, spawnPosition, spawnRotation);
@@ -100,8 +103,8 @@ public class SpawnEnemies : MonoBehaviour
                 if (rand > 0.9)
                     for (int j = 0; j < Random.value; j++)
                     {
-
-                        Vector3 spawnPosition2 = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                        hide = pickUpObjects[Random.Range(0, pickUpObjects.Length)];
+                        Vector3 spawnPosition2 = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y+2, spawnValues.z);
                         Quaternion spawnRotation2 = Quaternion.identity;
                         Instantiate(hide, spawnPosition2, spawnRotation2);
                     }

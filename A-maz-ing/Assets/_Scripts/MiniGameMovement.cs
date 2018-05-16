@@ -7,7 +7,7 @@ public class MiniGameMovement : MonoBehaviour
 {
     public Rigidbody rb;
     public Slider jumpHeight;
-    public float c;
+    public float jumpH;
 
     public bool isGrounded;
     public AudioSource jump;
@@ -22,7 +22,7 @@ public class MiniGameMovement : MonoBehaviour
 
     public void ChangeJumpHeight()
     {
-        c = jumpHeight.value;
+        jumpH = jumpHeight.value;
     }
 
 
@@ -33,7 +33,7 @@ public class MiniGameMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(0, c, 0, ForceMode.Impulse);
+                rb.AddForce(0, jumpH, 0, ForceMode.Impulse);
                 jump.Play();
             }
         }

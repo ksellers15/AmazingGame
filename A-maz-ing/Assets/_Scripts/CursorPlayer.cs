@@ -16,13 +16,16 @@ public class CursorPlayer : MonoBehaviour
         x = Player.transform.position.x;
         z = Player.transform.position.z;
         y = Player.transform.position.y;
-        offset = new Vector3(0, 2.5f, 0.5f);
+        offset = new Vector3(0, 2.5f, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Player.transform.position - offset;
+        if (Player != null)
+        {
+            transform.position = Player.transform.position - offset;
+        }
 
     }
 }

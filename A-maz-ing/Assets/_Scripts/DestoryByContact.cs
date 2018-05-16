@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 using UnityEngine;
 
 public class DestoryByContact : MonoBehaviour
 {
 
     public GameObject player;
-    public GameObject GameController;
-    public GameController gameController;
+    public GameObject BackGround;
+    public Renderer rend;
 
-    public AudioSource pickup;
 
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        GameController = GameObject.FindGameObjectWithTag("GameController");
-        gameController = GameController.GetComponent<GameController>();
+        BackGround = GameObject.FindGameObjectWithTag("Background");
+        rend = BackGround.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class DestoryByContact : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            pickup.Play();
+            rend.material.SetColor("Red", Color.black);
             Destroy(this.gameObject);
         }
 

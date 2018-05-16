@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour {
     }
 
         public void TogglePauseMenu()
-    {
+        {
         // not the optimal way but for the sake of readability
         if (isPaused)
         {

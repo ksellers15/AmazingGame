@@ -17,4 +17,11 @@ public class BoxMovement : MonoBehaviour
     {
         rb.velocity = transform.forward * speed;
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "LeftWall" || other.tag == "RightWall")
+            return;
+    }
 }

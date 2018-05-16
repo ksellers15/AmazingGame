@@ -6,9 +6,12 @@ public class MiniGameBallAttack : MonoBehaviour
 {
     public MiniGameUIController miniGameUI;
     public SpawnEnemies spawnEnemies;
+    public MiniGameMovement miniGM;
     public Rigidbody rb;
     public int damage;
     public AudioSource hit;
+    public AudioSource box;
+    public AudioSource pickUp;
     public int score;
     public bool inBox;
 
@@ -16,6 +19,7 @@ public class MiniGameBallAttack : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        miniGM = GetComponent<MiniGameMovement>();
     }
 
 
@@ -24,7 +28,7 @@ public class MiniGameBallAttack : MonoBehaviour
     {
         if (other.tag == "Head")
         {
-            rb.AddForce(0, 10, 0, ForceMode.Impulse);
+            rb.AddForce(0, miniGM.jumpH + 6 , 0, ForceMode.Impulse);
             hit.Play();
             score += 15;
         }
@@ -32,20 +36,26 @@ public class MiniGameBallAttack : MonoBehaviour
         {
             rb.AddForce(5, 5, 0, ForceMode.Impulse);
             hit.Play();
-            if(spawnEnemies.start)
+            if (spawnEnemies.start)
                 score += 20;
         }
         if (other.tag == "RightWall")
         {
             rb.AddForce(-5, 5, 0, ForceMode.Impulse);
             hit.Play();
-            if(spawnEnemies.start)
+            if (spawnEnemies.start)
                 score += 20;
         }
-        if(other.tag == "Safe")
+        if (other.tag == "Safe")
         {
             inBox = true;
+            box.Play();
             score += 50;
+        }
+        if(other.tag == "PickUp")
+        {
+            pickUp.Play();
+            score += 100;
         }
         miniGameUI.UpdateScore();
     }
